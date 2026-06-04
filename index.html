@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auditoría de Gastos y Cuentas · KAIZEN · Mayo 2026</title>
+<meta name="description" content="Resumen ejecutivo de la auditoría de gastos, incidencias, tarjetas y cuentas de KAIZEN correspondiente a mayo de 2026. Versión con datos sensibles parcialmente enmascarados.">
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f5f5f7;
+    --surface-2:#fbfbfd;
+    --text:#1d1d1f;
+    --text-2:#6e6e73;
+    --line:#e4e4e7;
+    --accent:#0071e3;
+    --accent-hover:#0077ED;
+    --alta:#d4332b;
+    --alta-bg:#fdeceb;
+    --media:#b25e00;
+    --media-bg:#fdf3e6;
+    --baja:#1d7d54;
+    --baja-bg:#e9f6ef;
+    --info:#0071e3;
+    --info-bg:#eaf3fd;
+    --neg:#d4332b;
+    --shadow:0 4px 24px rgba(0,0,0,0.06);
+    --shadow-lg:0 12px 40px rgba(0,0,0,0.08);
+    --radius:20px;
+    --maxw:1080px;
+    --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:var(--accent);text-decoration:none}
+
+  /* NAV */
+  .nav{
+    position:sticky;top:0;z-index:100;
+    backdrop-filter:blur(20px) saturate(180%);
+    -webkit-backdrop-filter:blur(20px) saturate(180%);
+    background:rgba(255,255,255,0.72);
+    border-bottom:1px solid rgba(0,0,0,0.06);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;
+    padding:0 24px;height:52px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-brand{font-weight:600;font-size:17px;letter-spacing:-0.01em}
+  .nav-links{display:flex;gap:26px;list-style:none}
+  .nav-links a{color:var(--text-2);font-size:14px;transition:color .25s ease}
+  .nav-links a:hover{color:var(--text)}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  /* LAYOUT */
+  section{padding:96px 24px}
+  .wrap{max-width:var(--maxw);margin:0 auto}
+  .eyebrow{
+    font-size:13px;font-weight:600;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:14px;
+  }
+  h2{font-size:clamp(28px,4vw,42px);font-weight:600;letter-spacing:-0.03em;line-height:1.08}
+  .lead{font-size:19px;color:var(--text-2);max-width:620px;margin-top:14px}
+
+  /* HERO */
+  .hero{
+    padding:120px 24px 88px;text-align:center;
+    background:linear-gradient(180deg,#fbfbfd 0%,#ffffff 100%);
+  }
+  .hero .tag{
+    display:inline-block;font-size:13px;font-weight:500;letter-spacing:.02em;
+    color:var(--text-2);background:var(--surface);
+    padding:7px 16px;border-radius:980px;margin-bottom:26px;
+  }
+  .hero h1{
+    font-size:clamp(40px,7vw,76px);font-weight:700;
+    letter-spacing:-0.035em;line-height:1.04;
+    max-width:18ch;margin:0 auto;
+  }
+  .hero p{font-size:clamp(18px,2.4vw,22px);color:var(--text-2);margin:22px auto 0;max-width:560px}
+  .hero-cta{margin-top:38px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-block;border-radius:980px;padding:12px 26px;
+    font-size:16px;font-weight:500;transition:all .3s cubic-bezier(.4,0,.2,1);
+  }
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-hover);transform:scale(1.02)}
+  .btn-ghost{background:var(--surface);color:var(--text)}
+  .btn-ghost:hover{background:#ededf0}
+
+  /* MASK NOTICE */
+  .notice{
+    max-width:var(--maxw);margin:0 auto;padding:0 24px;
+  }
+  .notice-inner{
+    display:flex;gap:12px;align-items:flex-start;
+    background:var(--info-bg);border:1px solid #cfe3fb;
+    border-radius:16px;padding:16px 20px;margin-top:-40px;
+    font-size:14px;color:#0a4a8f;
+  }
+  .notice-inner b{font-weight:600}
+  .mask{
+    font-variant-numeric:tabular-nums;letter-spacing:.02em;
+    color:var(--text-2);
+  }
+  /* Redacted segment: leading char(s) stay visible, rest hidden cleanly */
+  .r{
+    display:inline-block;vertical-align:middle;
+    width:1.7em;height:0.62em;margin:0 .12em;
+    border-radius:4px;
+    background:repeating-linear-gradient(45deg,#d2d2d8,#d2d2d8 3px,#c7c7cd 3px,#c7c7cd 6px);
+    opacity:.85;user-select:none;
+    position:relative;top:-0.04em;
+  }
+  .acc-bal .r,.kpi-value .r{height:0.5em;width:1.55em}
+
+  /* INDICATOR CARDS */
+  .grid{display:grid;gap:18px}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:860px){.grid-3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.grid-3,.grid-2{grid-template-columns:1fr}}
+
+  .card{
+    background:var(--surface-2);border:1px solid var(--line);
+    border-radius:var(--radius);padding:26px;
+    transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s ease;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .kpi-label{font-size:14px;color:var(--text-2);margin-bottom:10px;min-height:40px}
+  .kpi-value{font-size:30px;font-weight:600;letter-spacing:-0.02em}
+  .kpi-value.neg{color:var(--neg)}
+  .kpi-cur{font-size:16px;color:var(--text-2);font-weight:500;margin-left:4px}
+  .kpi-note{font-size:13px;color:var(--text-2);margin-top:12px;line-height:1.45}
+  .chip{
+    display:inline-block;font-size:11px;font-weight:600;letter-spacing:.03em;
+    text-transform:uppercase;padding:4px 10px;border-radius:980px;margin-top:14px;
+  }
+  .chip.base{background:var(--surface);color:var(--text-2)}
+  .chip.ajustar{background:var(--media-bg);color:var(--media)}
+  .chip.estimado{background:var(--info-bg);color:var(--info)}
+  .chip.info{background:var(--surface);color:var(--text-2)}
+  .chip.revisar{background:var(--alta-bg);color:var(--alta)}
+
+  /* INCIDENCIAS */
+  .alt{background:var(--surface)}
+  .inc-summary{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0 36px}
+  .pill{
+    display:flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid var(--line);
+    border-radius:980px;padding:10px 18px;font-size:15px;font-weight:500;
+  }
+  .dot{width:9px;height:9px;border-radius:50%}
+  .dot.alta{background:var(--alta)}.dot.media{background:var(--media)}.dot.baja{background:var(--baja)}
+
+  .inc{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;margin-bottom:14px;
+    transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s ease;
+  }
+  .inc:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .inc-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+  .badge{font-size:11px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:6px}
+  .badge.alta{background:var(--alta-bg);color:var(--alta)}
+  .badge.media{background:var(--media-bg);color:var(--media)}
+  .badge.baja{background:var(--baja-bg);color:var(--baja)}
+  .inc-prov{font-weight:600;font-size:16px;letter-spacing:-0.01em}
+  .inc-area{font-size:13px;color:var(--text-2)}
+  .inc-imp{margin-left:auto;font-weight:600;font-size:16px}
+  .inc-find{font-size:15px;color:var(--text);margin-bottom:8px}
+  .inc-act{font-size:14px;color:var(--text-2)}
+  .inc-act b{color:var(--text);font-weight:600}
+
+  /* TABLE */
+  .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:680px}
+  th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{font-weight:600;color:var(--text-2);font-size:12px;letter-spacing:.03em;text-transform:uppercase;background:var(--surface-2)}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:none}
+  tbody tr{transition:background .2s ease}
+  tbody tr:hover{background:var(--surface-2)}
+  .st{font-size:11px;font-weight:600;padding:3px 9px;border-radius:6px}
+  .st.reg{background:var(--baja-bg);color:var(--baja)}
+  .st.aj{background:var(--media-bg);color:var(--media)}
+  .st.rev{background:var(--alta-bg);color:var(--alta)}
+  .st.dev{background:var(--info-bg);color:var(--info)}
+  .trow-total td{font-weight:700;background:var(--surface-2)}
+
+  /* ACCOUNTS */
+  .acc{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s ease;
+  }
+  .acc:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .acc-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+  .acc-name{font-weight:600;font-size:15px;letter-spacing:-0.01em}
+  .acc-bal{font-size:24px;font-weight:600;letter-spacing:-0.02em}
+  .acc-bal.neg{color:var(--neg)}
+  .acc-meta{font-size:13px;color:var(--text-2);margin-top:10px;line-height:1.5}
+  .acc-meta b{color:var(--text);font-weight:600}
+
+  /* SOURCES */
+  .src{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .src:last-child{border-bottom:none}
+  .src-type{
+    flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.04em;
+    padding:5px 10px;border-radius:6px;background:var(--surface);color:var(--text-2);
+    min-width:48px;text-align:center;
+  }
+  .src-file{font-weight:500;font-size:15px}
+  .src-obs{font-size:13px;color:var(--text-2);margin-top:2px}
+
+  /* FOOTER */
+  footer{padding:56px 24px;text-align:center;color:var(--text-2);font-size:13px;background:var(--surface)}
+  footer .disc{max-width:640px;margin:0 auto 14px;line-height:1.6}
+
+  /* ANIMATION */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .hero h1,.hero p,.hero .tag,.hero-cta{opacity:0;animation:rise .8s cubic-bezier(.4,0,.2,1) forwards}
+  .hero .tag{animation-delay:.05s}
+  .hero h1{animation-delay:.15s}
+  .hero p{animation-delay:.3s}
+  .hero-cta{animation-delay:.45s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    .hero h1,.hero p,.hero .tag,.hero-cta{opacity:1}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">KAIZEN · Auditoría</span>
+    <ul class="nav-links">
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#incidencias">Incidencias</a></li>
+      <li><a href="#gastos">Gastos</a></li>
+      <li><a href="#cuentas">Cuentas</a></li>
+      <li><a href="#fuentes">Fuentes</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="tag">Auditoría interna · Mayo 2026</span>
+  <h1>Gastos y cuentas KAIZEN</h1>
+  <p>Revisión de facturas, tarjetas y saldos del mes de mayo de 2026, con incidencias detectadas y acciones recomendadas.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#incidencias">Ver incidencias</a>
+    <a class="btn btn-ghost" href="#resumen">Indicadores clave</a>
+  </div>
+</header>
+
+<div class="notice">
+  <div class="notice-inner">
+    <span>🔒</span>
+    <span><b>Versión pública.</b> Los importes se muestran completos. Solo los datos sensibles que no son cifras (nombres, números de tarjeta, CIF/NIF y referencias internas) aparecen <b>parcialmente enmascarados</b>: identificables para el destinatario, no legibles para terceros.</span>
+  </div>
+</div>
+
+<!-- RESUMEN -->
+<section id="resumen">
+  <div class="wrap">
+    <p class="eyebrow reveal">Resumen</p>
+    <h2 class="reveal">Indicadores clave del periodo</h2>
+    <p class="lead reveal">Cifras base extraídas del Excel actual y estimaciones tras los ajustes detectados.</p>
+
+    <div class="grid grid-3" style="margin-top:44px">
+      <div class="card reveal">
+        <div class="kpi-label">Total gastos 2T según Excel actual</div>
+        <div class="kpi-value">12.581,29<span class="kpi-cur">EUR</span></div>
+        <div class="kpi-note">Suma de líneas registradas en INGRESOS-GASTOS MAYO 2026.</div>
+        <span class="chip base">Base</span>
+      </div>
+      <div class="card reveal">
+        <div class="kpi-label">Gastos mayo por fecha de factura (Excel actual)</div>
+        <div class="kpi-value">3.582,16<span class="kpi-cur">EUR</span></div>
+        <div class="kpi-note">Solo facturas con fecha de mayo dentro del Excel.</div>
+        <span class="chip base">Base</span>
+      </div>
+      <div class="card reveal">
+        <div class="kpi-label">Ajustes mínimos detectados en mayo</div>
+        <div class="kpi-value">144,67<span class="kpi-cur">EUR</span></div>
+        <div class="kpi-note">Reg. F145 + Koyfin + OpenAI credits + Adobe + EasyPark.</div>
+        <span class="chip ajustar">Ajustar</span>
+      </div>
+      <div class="card reveal">
+        <div class="kpi-label">Mayo corregido mínimo</div>
+        <div class="kpi-value">3.726,83<span class="kpi-cur">EUR</span></div>
+        <div class="kpi-note">No incluye reclasificaciones ni la nota de crédito de Apple.</div>
+        <span class="chip estimado">Estimado</span>
+      </div>
+      <div class="card reveal">
+        <div class="kpi-label">Mayo por devengo de servicio</div>
+        <div class="kpi-value">4.082,56<span class="kpi-cur">EUR</span></div>
+        <div class="kpi-note">Incluye Movistar mayo y FirstWorkPlaces mayo facturados el 01/06.</div>
+        <span class="chip estimado">Estimado</span>
+      </div>
+      <div class="card reveal">
+        <div class="kpi-label">Ingresos 2T según Excel</div>
+        <div class="kpi-value">1.089.582,40<span class="kpi-cur">EUR</span></div>
+        <div class="kpi-note">Incluye venta de inmueble <span class="r"></span> y facturación recurrente.</div>
+        <span class="chip info">Info</span>
+      </div>
+      <div class="card reveal">
+        <div class="kpi-label">Saldo cuenta EUR inversión</div>
+        <div class="kpi-value">4.776,64<span class="kpi-cur">EUR</span></div>
+        <div class="kpi-note">Saldo al 01/06/2026.</div>
+        <span class="chip info">Info</span>
+      </div>
+      <div class="card reveal">
+        <div class="kpi-label">Saldo cuenta USD inversión</div>
+        <div class="kpi-value">2.238,04<span class="kpi-cur">USD</span></div>
+        <div class="kpi-note">Saldo al 01/06/2026.</div>
+        <span class="chip info">Info</span>
+      </div>
+      <div class="card reveal">
+        <div class="kpi-label">Saldo financiación / intereses</div>
+        <div class="kpi-value neg">−499.593,12<span class="kpi-cur">EUR</span></div>
+        <div class="kpi-note">Intereses de mayo: −1.213,14 EUR.</div>
+        <span class="chip revisar">Revisar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCIDENCIAS -->
+<section id="incidencias" class="alt">
+  <div class="wrap">
+    <p class="eyebrow reveal">Incidencias y ajustes</p>
+    <h2 class="reveal">Hallazgos por prioridad</h2>
+    <p class="lead reveal">12 incidencias detectadas durante la conciliación de facturas, tarjetas y cuentas.</p>
+
+    <div class="inc-summary reveal">
+      <span class="pill"><span class="dot alta"></span>3 prioridad alta</span>
+      <span class="pill"><span class="dot media"></span>8 prioridad media</span>
+      <span class="pill"><span class="dot baja"></span>1 prioridad baja</span>
+    </div>
+
+    <!-- ALTA -->
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge alta">Alta</span>
+        <span class="inc-prov">COL. Registradores · F145 20260531</span>
+        <span class="inc-area">Duplicado / alta pendiente</span>
+        <span class="inc-imp">28,68 €</span>
+      </div>
+      <p class="inc-find">El mismo PDF aparece dos veces y, además, no está incorporado en el Excel de gastos.</p>
+      <p class="inc-act"><b>Acción:</b> registrar una sola vez F2026/145 por 28,68 € y eliminar la copia duplicada.</p>
+    </div>
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge alta">Alta</span>
+        <span class="inc-prov">DGT · Sanciones internet 11/05</span>
+        <span class="inc-area">Tarjeta sin factura · No deducible</span>
+        <span class="inc-imp">100,00 €</span>
+      </div>
+      <p class="inc-find">Cargo de tarjeta sin factura subida; las sanciones no deberían tratarse como gasto fiscal deducible.</p>
+      <p class="inc-act"><b>Acción:</b> clasificar como multa/sanción no deducible y guardar justificante si existe.</p>
+    </div>
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge alta">Alta</span>
+        <span class="inc-prov">Apple · LA60268666 / KL75888375</span>
+        <span class="inc-area">Nota de crédito</span>
+        <span class="inc-imp">−609,87 €</span>
+      </div>
+      <p class="inc-find">El Excel solo registra la nota de débito de 2.904,13 €, pero existe una nota de crédito de 609,87 €.</p>
+      <p class="inc-act"><b>Acción:</b> revisar con contabilidad si hay que registrar el abono o netear el coste.</p>
+    </div>
+
+    <!-- MEDIA -->
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge media">Media</span>
+        <span class="inc-prov">Adobe · IEE2026009432299 e IEE2026010085638</span>
+        <span class="inc-area">Error de importe</span>
+        <span class="inc-imp">1,98 €</span>
+      </div>
+      <p class="inc-find">Dos facturas están introducidas a 19,00 €, pero el PDF indica 19,99 € cada una.</p>
+      <p class="inc-act"><b>Acción:</b> corregir +0,99 € en cada factura.</p>
+    </div>
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge media">Media</span>
+        <span class="inc-prov">EasyPark · F1707854436</span>
+        <span class="inc-area">Error de redondeo</span>
+        <span class="inc-imp">0,16 €</span>
+      </div>
+      <p class="inc-find">El Excel registra 15,038 €; la factura total es de 15,20 €.</p>
+      <p class="inc-act"><b>Acción:</b> corregir el total a 15,20 €.</p>
+    </div>
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge media">Media</span>
+        <span class="inc-prov">Koyfin · 6QA2PXTN-0007</span>
+        <span class="inc-area">Alta pendiente · Falta gasto</span>
+        <span class="inc-imp">93,86 €</span>
+      </div>
+      <p class="inc-find">Factura de mayo por USD 110; la tarjeta recoge 93,86 €. No aparece como línea en el Excel.</p>
+      <p class="inc-act"><b>Acción:</b> dar de alta en gastos con moneda USD y su contravalor en EUR pagado.</p>
+    </div>
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge media">Media</span>
+        <span class="inc-prov">OpenAI · YCDKCWRS-0005</span>
+        <span class="inc-area">Alta pendiente · Falta gasto</span>
+        <span class="inc-imp">19,99 €</span>
+      </div>
+      <p class="inc-find">Factura de créditos de ChatGPT del 28/05 que no aparece en el Excel.</p>
+      <p class="inc-act"><b>Acción:</b> registrar 16,52 base + 3,47 IVA = 19,99 €.</p>
+    </div>
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge media">Media</span>
+        <span class="inc-prov">CADE · F2026-284 y F2026-376</span>
+        <span class="inc-area">Datos fiscales · CIF incorrecto</span>
+        <span class="inc-imp">—</span>
+      </div>
+      <p class="inc-find">El Excel usa el CIF B-856<span class="r"></span> en CADE; la factura de CADE indica B285<span class="r"></span>.</p>
+      <p class="inc-act"><b>Acción:</b> corregir el CIF de CADE en todas las líneas.</p>
+    </div>
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge media">Media</span>
+        <span class="inc-prov">Alphabet · F142610185911</span>
+        <span class="inc-area">Datos proveedor · Nº factura</span>
+        <span class="inc-imp">—</span>
+      </div>
+      <p class="inc-find">El Excel refleja F122610185911; el PDF indica 142610185911.</p>
+      <p class="inc-act"><b>Acción:</b> corregir el número de factura.</p>
+    </div>
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge media">Media</span>
+        <span class="inc-prov">El Lomo Feroz</span>
+        <span class="inc-area">Tarjeta vs factura</span>
+        <span class="inc-imp">3,30 €</span>
+      </div>
+      <p class="inc-find">Factura total de 126,70 € pero la tarjeta muestra un cargo de 130,00 €.</p>
+      <p class="inc-act"><b>Acción:</b> registrar la factura por 126,70 €; justificar o reclasificar los 3,30 € de diferencia.</p>
+    </div>
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge media">Media</span>
+        <span class="inc-prov">Movistar Fusión</span>
+        <span class="inc-area">Deducibilidad · Revisar criterio</span>
+        <span class="inc-imp">463,76 €</span>
+      </div>
+      <p class="inc-find">Incluye TV / Netflix / Disney+ / Cine / atresplayer junto a las líneas y la fibra.</p>
+      <p class="inc-act"><b>Acción:</b> separar el componente profesional del de entretenimiento si procede.</p>
+    </div>
+
+    <!-- BAJA -->
+    <div class="inc reveal">
+      <div class="inc-head">
+        <span class="badge baja">Baja</span>
+        <span class="inc-prov">Koyfin · Factura</span>
+        <span class="inc-area">Proveedor · Nombre cliente</span>
+        <span class="inc-imp">—</span>
+      </div>
+      <p class="inc-find">La factura pone «KIAZEN» en vez de «KAIZEN». El NIF es correcto.</p>
+      <p class="inc-act"><b>Acción:</b> solicitar rectificación si contabilidad lo exige.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GASTOS -->
+<section id="gastos">
+  <div class="wrap">
+    <p class="eyebrow reveal">Detalle</p>
+    <h2 class="reveal">Gastos de mayo: registrados y ajustes</h2>
+    <p class="lead reveal">Líneas de gasto del periodo con su estado de revisión. El total por devengo asciende a 4.082,56 €.</p>
+
+    <div class="table-wrap reveal" style="margin-top:36px">
+      <table>
+        <thead>
+          <tr>
+            <th>Estado</th><th>Fecha</th><th>Proveedor</th><th>Concepto</th>
+            <th class="num">Base</th><th class="num">IVA</th><th class="num">IRPF</th><th class="num">Total</th><th>Categoría</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="st reg">Registrado</span></td><td>01/05</td><td>Alphabet</td><td>Renting</td><td class="num">1.624,05</td><td class="num">341,05</td><td class="num">0,00</td><td class="num">1.965,10</td><td>Vehículo</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>01/05</td><td>Busining / FirstWorkPlaces</td><td>Cuota abril</td><td class="num">100,26</td><td class="num">21,05</td><td class="num">0,00</td><td class="num">121,31</td><td>Oficina</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>01/05</td><td>Movistar</td><td>Fusión abril</td><td class="num">190,06</td><td class="num">39,91</td><td class="num">0,00</td><td class="num">229,97</td><td>Telecom</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>02/05</td><td>EasyPark</td><td>Estacionamiento abril</td><td class="num">13,02</td><td class="num">2,18</td><td class="num">0,00</td><td class="num">15,20</td><td>Parking</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>04/05</td><td>CADE</td><td>Renta mayo</td><td class="num">400,00</td><td class="num">84,00</td><td class="num">0,00</td><td class="num">484,00</td><td>Oficina</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>05/05</td><td>Abad Insuga</td><td>Servicios abril</td><td class="num">133,50</td><td class="num">28,04</td><td class="num">20,03</td><td class="num">141,51</td><td>Asesoría</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>06/05</td><td>EasyPark</td><td>Estacionamiento mayo</td><td class="num">4,99</td><td class="num">0,21</td><td class="num">0,00</td><td class="num">5,20</td><td>Parking</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>07/05</td><td>OpenAI</td><td>IA</td><td class="num">11,52</td><td class="num">2,42</td><td class="num">0,00</td><td class="num">13,94</td><td>Software/IA</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>08/05</td><td>Anthropic</td><td>Claude Pro</td><td class="num">18,00</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">18,00</td><td>Software/IA</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>08/05</td><td>Anthropic</td><td>Uso extra</td><td class="num">38,25</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">38,25</td><td>Software/IA</td></tr>
+          <tr><td><span class="st aj">Ajustar</span></td><td>09/05</td><td>Koyfin</td><td>Koyfin Premium</td><td class="num">93,86</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">93,86</td><td>Software/Finanzas</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>13/05</td><td>OpenAI</td><td>IA</td><td class="num">7,14</td><td class="num">1,50</td><td class="num">0,00</td><td class="num">8,64</td><td>Software/IA</td></tr>
+          <tr><td><span class="st aj">Ajustar</span></td><td>20/05</td><td>Adobe</td><td>Acrobat Pro</td><td class="num">19,99</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">19,99</td><td>Software</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>23/05</td><td>OpenAI</td><td>ChatGPT Business</td><td class="num">85,96</td><td class="num">18,05</td><td class="num">0,00</td><td class="num">104,01</td><td>Software/IA</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>24/05</td><td>Anthropic</td><td>Uso extra</td><td class="num">38,25</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">38,25</td><td>Software/IA</td></tr>
+          <tr><td><span class="st rev">Revisar</span></td><td>25/05</td><td>El Lomo Feroz</td><td>Restaurante</td><td class="num">115,18</td><td class="num">11,52</td><td class="num">0,00</td><td class="num">126,70</td><td>Restaurante</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>26/05</td><td>Porsche</td><td>Porsche Connect</td><td class="num">16,44</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">16,44</td><td>Vehículo</td></tr>
+          <tr><td><span class="st reg">Registrado</span></td><td>27/05</td><td>Anthropic</td><td>Claude Max</td><td class="num">180,00</td><td class="num">37,80</td><td class="num">0,00</td><td class="num">217,80</td><td>Software/IA</td></tr>
+          <tr><td><span class="st aj">Ajustar</span></td><td>28/05</td><td>OpenAI</td><td>ChatGPT Credits</td><td class="num">16,52</td><td class="num">3,47</td><td class="num">0,00</td><td class="num">19,99</td><td>Software/IA</td></tr>
+          <tr><td><span class="st aj">Ajustar</span></td><td>31/05</td><td>Adobe</td><td>Acrobat Pro</td><td class="num">19,99</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">19,99</td><td>Software</td></tr>
+          <tr><td><span class="st aj">Ajustar</span></td><td>31/05</td><td>Registradores</td><td>Notas simples</td><td class="num">27,06</td><td class="num">5,68</td><td class="num">4,06</td><td class="num">28,68</td><td>Registro</td></tr>
+          <tr><td><span class="st dev">Devengo</span></td><td>01/06</td><td>FirstWorkPlaces</td><td>Cuota mayo</td><td class="num">100,78</td><td class="num">21,16</td><td class="num">0,00</td><td class="num">121,94</td><td>Oficina</td></tr>
+          <tr><td><span class="st dev">Devengo</span></td><td>01/06</td><td>Movistar</td><td>Fusión mayo</td><td class="num">193,21</td><td class="num">40,57</td><td class="num">0,00</td><td class="num">233,79</td><td>Telecom</td></tr>
+          <tr class="trow-total"><td colspan="4">Total lista</td><td class="num">3.448,03</td><td class="num">658,61</td><td class="num">24,09</td><td class="num">4.082,56</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CUENTAS Y TARJETAS -->
+<section id="cuentas" class="alt">
+  <div class="wrap">
+    <p class="eyebrow reveal">Tesorería</p>
+    <h2 class="reveal">Cuentas y tarjetas</h2>
+    <p class="lead reveal">Saldos al 01/06/2026 y conciliación de cargos de tarjeta del mes.</p>
+
+    <h3 class="reveal" style="margin:40px 0 18px;font-size:20px;font-weight:600;letter-spacing:-0.01em">Cuentas y saldos</h3>
+    <div class="grid grid-3">
+      <div class="acc reveal">
+        <div class="acc-top"><span class="acc-name">Inversión EUR</span><span class="acc-bal">4.776,64 €</span></div>
+        <div class="acc-meta"><b>Venta Porsche AG / Spot USD</b> · 29.043,87 / −25.000. Movimientos de inversión, no opex. Conciliar con extracto de broker.</div>
+      </div>
+      <div class="acc reveal">
+        <div class="acc-top"><span class="acc-name">Inversión USD</span><span class="acc-bal">2.238,04 $</span></div>
+        <div class="acc-meta">Compras/ventas de acciones en mayo. Saldo temporal negativo tras anulación de Alibaba (−25.100,93 USD). Revisar fechas valor y liquidación FX.</div>
+      </div>
+      <div class="acc reveal">
+        <div class="acc-top"><span class="acc-name">Financiación</span><span class="acc-bal neg">−499.593,12 €</span></div>
+        <div class="acc-meta">Liquidación de intereses 21/04–21/05: <b>−1.213,14 €</b>. Gasto financiero significativo, no mezclar con opex. Registrar intereses y revisar coste.</div>
+      </div>
+    </div>
+
+    <h3 class="reveal" style="margin:48px 0 18px;font-size:20px;font-weight:600;letter-spacing:-0.01em">Tarjetas / cargos de mayo</h3>
+    <div class="grid grid-3">
+      <div class="acc reveal">
+        <div class="acc-top"><span class="acc-name">VISA ··· 80<span class="r"></span></span><span class="acc-bal">565,58 €</span></div>
+        <div class="acc-meta">Mayo 26 liquidado · disponible 944,38 €. Incluye DGT 100, Koyfin 93,86, OpenAI, parking, Cabify y restaurante. <b>Pedir tickets faltantes y reclasificar la sanción.</b></div>
+      </div>
+      <div class="acc reveal">
+        <div class="acc-top"><span class="acc-name">VISA ··· 04<span class="r"></span></span><span class="acc-bal">217,80 €</span></div>
+        <div class="acc-meta">Junio 26 pendiente · disponible 9.782,20 €. Anthropic Max facturado el 27/05 pero cargo pendiente en junio. <b>Registrar por factura si se aplica criterio de devengo.</b></div>
+      </div>
+      <div class="acc reveal">
+        <div class="acc-top"><span class="acc-name">VÍA-T ··· 15<span class="r"></span></span><span class="acc-bal">11,80 €</span></div>
+        <div class="acc-meta">Mayo 26 cargado · disponible 398,90 €. Peajes/parking sin facturas individualizadas. <b>Guardar detalle VÍA-T como soporte y clasificar vehículo/parking.</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUENTES -->
+<section id="fuentes">
+  <div class="wrap">
+    <p class="eyebrow reveal">Trazabilidad</p>
+    <h2 class="reveal">Fuentes revisadas</h2>
+    <p class="lead reveal">Documentos utilizados como base de la auditoría.</p>
+
+    <div class="card reveal" style="margin-top:36px">
+      <div class="src"><span class="src-type">Excel</span><div><div class="src-file">INGRESOS-GASTOS MAYO 2026.xlsx</div><div class="src-obs">Gastos 2T y facturación 2T · base de la auditoría.</div></div></div>
+      <div class="src"><span class="src-type">Excel</span><div><div class="src-file">Detalle de Tarjeta KAIZEN — A<span class="r"></span>.xlsx</div><div class="src-obs">Movimientos de tarjeta liquidados en mayo · conciliación con facturas.</div></div></div>
+      <div class="src"><span class="src-type">Excel</span><div><div class="src-file">Detalle de Tarjeta KAIZEN — J<span class="r"></span>.xlsx</div><div class="src-obs">Cargo Anthropic pendiente de junio · conciliación con factura.</div></div></div>
+      <div class="src"><span class="src-type">Excel</span><div><div class="src-file">Detalle de Tarjeta KAIZEN — J<span class="r"></span>_20260531.xlsx</div><div class="src-obs">VÍA-T mayo · conciliación de vehículo.</div></div></div>
+      <div class="src"><span class="src-type">Excel</span><div><div class="src-file">Balance / Movements cuentas Bankinter</div><div class="src-obs">Saldos y movimientos de inversión/financiación · no clasificar como opex.</div></div></div>
+      <div class="src"><span class="src-type">PDF</span><div><div class="src-file">Facturas de proveedores subidas</div><div class="src-obs">Validación de importes, IVA, IRPF y fechas · ver incidencias.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="disc">Documento interno de auditoría con datos sensibles parcialmente enmascarados. Las cifras son estimaciones de trabajo sujetas a revisión por contabilidad y no constituyen asesoramiento fiscal ni contable.</p>
+  <p>KAIZEN · Auditoría de gastos y cuentas · Mayo 2026</p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay = (i % 6 * 0.05) + 's';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
